@@ -1,0 +1,147 @@
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.input-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.input-required {
+  color: #ef4444;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background-color: white;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.input-container:hover:not(.input-container--disabled) {
+  border-color: #9ca3af;
+}
+
+.input-container--focused {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.input-container--error {
+  border-color: #ef4444;
+}
+
+.input-container--error.input-container--focused {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.input-container--disabled {
+  background-color: #f3f4f6;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.input-prefix {
+  padding: 0 12px;
+  color: #6b7280;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #e5e7eb;
+}
+
+.input-field {
+  flex: 1;
+  padding: 10px 12px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  color: #111827;
+  outline: none;
+  width: 100%;
+}
+
+.input-field:disabled {
+  cursor: not-allowed;
+}
+
+.input-field::placeholder {
+  color: #9ca3af;
+}
+
+.input-suffix-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 12px;
+}
+
+.input-clear-button,
+.input-password-toggle {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  transition: color 0.2s ease;
+  border-radius: 4px;
+}
+
+.input-clear-button:hover:not(:disabled),
+.input-password-toggle:hover:not(:disabled) {
+  color: #374151;
+  background-color: #f3f4f6;
+}
+
+.input-clear-button:disabled,
+.input-password-toggle:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.input-clear-icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.input-eye-icon,
+.input-eye-off-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.input-suffix {
+  color: #6b7280;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-message {
+  font-size: 12px;
+  margin-top: 2px;
+  color: #6b7280;
+}
+
+.input-message--error {
+  color: #ef4444;
+}
