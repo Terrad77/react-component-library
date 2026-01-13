@@ -1,15 +1,15 @@
 // src/components/Toast/Toast.tsx
-import { useEffect, useState, useCallback } from "react";
-import "./Toast.css";
+import { useEffect, useState, useCallback } from 'react';
+import './Toast.css';
 
-export type ToastType = "success" | "error" | "warning" | "info";
+export type ToastType = 'success' | 'error' | 'warning' | 'info';
 export type ToastPosition =
-  | "top-right"
-  | "top-left"
-  | "bottom-right"
-  | "bottom-left"
-  | "top-center"
-  | "bottom-center";
+  | 'top-right'
+  | 'top-left'
+  | 'bottom-right'
+  | 'bottom-left'
+  | 'top-center'
+  | 'bottom-center';
 
 export interface ToastProps {
   /** Toast type */
@@ -35,16 +35,16 @@ export interface ToastProps {
 }
 
 export const Toast = ({
-  type = "info",
+  type = 'info',
   title,
   message,
-  position = "top-right",
+  position = 'top-right',
   autoClose = 5000,
   closeButton = true,
   showProgress = true,
   onClose,
   id,
-  className = "",
+  className = '',
 }: ToastProps) => {
   const [isVisible, setIsVisible] = useState(true);
   const [progress, setProgress] = useState(100);
@@ -60,7 +60,7 @@ export const Toast = ({
   useEffect(() => {
     if (autoClose !== false) {
       const interval = setInterval(() => {
-        setProgress((prev) => {
+        setProgress(prev => {
           if (prev <= 0) {
             clearInterval(interval);
             handleClose(); // Now handleClose is defined
@@ -78,25 +78,25 @@ export const Toast = ({
 
   const getIcon = () => {
     switch (type) {
-      case "success":
+      case 'success':
         return (
           <svg className="toast-icon" viewBox="0 0 24 24">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
           </svg>
         );
-      case "error":
+      case 'error':
         return (
           <svg className="toast-icon" viewBox="0 0 24 24">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
           </svg>
         );
-      case "warning":
+      case 'warning':
         return (
           <svg className="toast-icon" viewBox="0 0 24 24">
             <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
           </svg>
         );
-      case "info":
+      case 'info':
       default:
         return (
           <svg className="toast-icon" viewBox="0 0 24 24">
@@ -108,16 +108,16 @@ export const Toast = ({
 
   const getTypeClass = () => {
     switch (type) {
-      case "success":
-        return "toast--success";
-      case "error":
-        return "toast--error";
-      case "warning":
-        return "toast--warning";
-      case "info":
-        return "toast--info";
+      case 'success':
+        return 'toast--success';
+      case 'error':
+        return 'toast--error';
+      case 'warning':
+        return 'toast--warning';
+      case 'info':
+        return 'toast--info';
       default:
-        return "";
+        return '';
     }
   };
 
@@ -153,10 +153,7 @@ export const Toast = ({
 
       {showProgress && autoClose !== false && (
         <div className="toast-progress">
-          <div
-            className="toast-progress-bar"
-            style={{ width: `${progress}%` }}
-          />
+          <div className="toast-progress-bar" style={{ width: `${progress}%` }} />
         </div>
       )}
     </div>
@@ -170,13 +167,6 @@ export interface ToastContainerProps {
   children: React.ReactNode;
 }
 
-export const ToastContainer = ({
-  position = "top-right",
-  children,
-}: ToastContainerProps) => {
-  return (
-    <div className={`toast-container toast-container--${position}`}>
-      {children}
-    </div>
-  );
+export const ToastContainer = ({ position = 'top-right', children }: ToastContainerProps) => {
+  return <div className={`toast-container toast-container--${position}`}>{children}</div>;
 };

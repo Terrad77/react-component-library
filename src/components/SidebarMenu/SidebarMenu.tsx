@@ -1,5 +1,5 @@
-import { useState, Fragment } from "react";
-import "./SidebarMenu.css";
+import { useState, Fragment } from 'react';
+import './SidebarMenu.css';
 
 export interface MenuItem {
   /** Menu item ID */
@@ -44,7 +44,7 @@ export const SidebarMenu = ({
   onItemClick,
   title,
   showDividers = true,
-  className = "",
+  className = '',
 }: SidebarMenuProps) => {
   const [activeId, setActiveId] = useState(defaultActiveId);
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
@@ -93,33 +93,27 @@ export const SidebarMenu = ({
       <Fragment key={uniqueKey}>
         <li className="sidebar-menu-item">
           <a
-            href={item.href || "#"}
-            className={`sidebar-menu-link ${
-              isActive ? "sidebar-menu-link--active" : ""
-            } ${
-              item.disabled ? "sidebar-menu-link--disabled" : ""
+            href={item.href || '#'}
+            className={`sidebar-menu-link ${isActive ? 'sidebar-menu-link--active' : ''} ${
+              item.disabled ? 'sidebar-menu-link--disabled' : ''
             } sidebar-menu-link--depth-${depth}`}
-            onClick={(e) => handleItemClick(item, e)}
+            onClick={e => handleItemClick(item, e)}
             title={collapsed ? item.label : undefined}
-            aria-current={isActive ? "page" : undefined}
+            aria-current={isActive ? 'page' : undefined}
           >
-            {item.icon && (
-              <span className="sidebar-menu-icon">{item.icon}</span>
-            )}
+            {item.icon && <span className="sidebar-menu-icon">{item.icon}</span>}
 
             {!collapsed && (
               <>
                 <span className="sidebar-menu-label">{item.label}</span>
 
-                {item.badge && (
-                  <span className="sidebar-menu-badge">{item.badge}</span>
-                )}
+                {item.badge && <span className="sidebar-menu-badge">{item.badge}</span>}
 
                 {hasChildren && (
                   <span className="sidebar-menu-arrow">
                     <svg
                       className={`sidebar-menu-arrow-icon ${
-                        isExpanded ? "sidebar-menu-arrow-icon--expanded" : ""
+                        isExpanded ? 'sidebar-menu-arrow-icon--expanded' : ''
                       }`}
                       viewBox="0 0 24 24"
                     >
@@ -134,9 +128,7 @@ export const SidebarMenu = ({
 
         {hasChildren && isExpanded && !collapsed && (
           <ul className="sidebar-submenu" key={`submenu-${uniqueKey}`}>
-            {item.children!.map((child) =>
-              renderMenuItem(child, depth + 1, uniqueKey)
-            )}
+            {item.children!.map(child => renderMenuItem(child, depth + 1, uniqueKey))}
           </ul>
         )}
       </Fragment>
@@ -145,9 +137,7 @@ export const SidebarMenu = ({
 
   return (
     <nav
-      className={`sidebar-menu ${
-        collapsed ? "sidebar-menu--collapsed" : ""
-      } ${className}`}
+      className={`sidebar-menu ${collapsed ? 'sidebar-menu--collapsed' : ''} ${className}`}
       aria-label="Main navigation"
     >
       {title && !collapsed && (
@@ -161,10 +151,7 @@ export const SidebarMenu = ({
           <Fragment key={item.id}>
             {renderMenuItem(item)}
             {showDividers && index < items.length - 1 && (
-              <li
-                className="sidebar-menu-divider"
-                key={`divider-${item.id}-${index}`}
-              />
+              <li className="sidebar-menu-divider" key={`divider-${item.id}-${index}`} />
             )}
           </Fragment>
         ))}

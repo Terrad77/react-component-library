@@ -1,13 +1,7 @@
-import { useState, useRef } from "react";
-import "./Input.css";
+import { useState, useRef } from 'react';
+import './Input.css';
 
-export type InputType =
-  | "text"
-  | "password"
-  | "email"
-  | "number"
-  | "tel"
-  | "search";
+export type InputType = 'text' | 'password' | 'email' | 'number' | 'tel' | 'search';
 
 export interface InputProps {
   /** Input type */
@@ -47,31 +41,30 @@ export interface InputProps {
 }
 
 export const Input = ({
-  type = "text",
-  value = "",
-  placeholder = "",
+  type = 'text',
+  value = '',
+  placeholder = '',
   disabled = false,
-  error = "",
-  helperText = "",
-  label = "",
+  error = '',
+  helperText = '',
+  label = '',
   id,
   required = false,
   clearable = false,
-  showPasswordToggle = type === "password",
+  showPasswordToggle = type === 'password',
   prefix,
   suffix,
   onChange,
   onFocus,
   onBlur,
-  className = "",
+  className = '',
 }: InputProps) => {
   const [inputValue, setInputValue] = useState(value);
   const [isFocused, setIsFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const generatedId =
-    id || `input-${Math.random().toString(36).substring(2, 11)}`;
+  const generatedId = id || `input-${Math.random().toString(36).substring(2, 11)}`;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
@@ -80,8 +73,8 @@ export const Input = ({
   };
 
   const handleClear = () => {
-    setInputValue("");
-    onChange?.("");
+    setInputValue('');
+    onChange?.('');
     inputRef.current?.focus();
   };
 
@@ -100,15 +93,15 @@ export const Input = ({
   };
 
   const getInputType = () => {
-    if (type === "password" && showPasswordToggle) {
-      return showPassword ? "text" : "password";
+    if (type === 'password' && showPasswordToggle) {
+      return showPassword ? 'text' : 'password';
     }
     return type;
   };
 
   const hasValue = inputValue.length > 0;
   const showClearButton = clearable && hasValue && !disabled;
-  const isPasswordType = type === "password";
+  const isPasswordType = type === 'password';
 
   return (
     <div className={`input-wrapper ${className}`}>
@@ -121,10 +114,8 @@ export const Input = ({
 
       <div
         className={`input-container ${
-          isFocused ? "input-container--focused" : ""
-        } ${error ? "input-container--error" : ""} ${
-          disabled ? "input-container--disabled" : ""
-        }`}
+          isFocused ? 'input-container--focused' : ''
+        } ${error ? 'input-container--error' : ''} ${disabled ? 'input-container--disabled' : ''}`}
       >
         {prefix && <span className="input-prefix">{prefix}</span>}
 
@@ -161,7 +152,7 @@ export const Input = ({
               type="button"
               className="input-password-toggle"
               onClick={handleTogglePassword}
-              aria-label={showPassword ? "Hide password" : "Show password"}
+              aria-label={showPassword ? 'Hide password' : 'Show password'}
             >
               {showPassword ? (
                 <svg className="input-eye-icon" viewBox="0 0 24 24">
@@ -182,7 +173,7 @@ export const Input = ({
       </div>
 
       {(error || helperText) && (
-        <div className={`input-message ${error ? "input-message--error" : ""}`}>
+        <div className={`input-message ${error ? 'input-message--error' : ''}`}>
           {error || helperText}
         </div>
       )}

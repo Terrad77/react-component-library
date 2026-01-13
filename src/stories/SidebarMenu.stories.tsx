@@ -1,13 +1,13 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { SidebarMenu } from "../components/SidebarMenu/SidebarMenu";
+import type { Meta, StoryObj } from '@storybook/react';
+import { SidebarMenu } from '../components/SidebarMenu/SidebarMenu';
 
 const meta: Meta<typeof SidebarMenu> = {
-  title: "Components/SidebarMenu",
+  title: 'Components/SidebarMenu',
   component: SidebarMenu,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    collapsed: { control: "boolean" },
-    showDividers: { control: "boolean" },
+    collapsed: { control: 'boolean' },
+    showDividers: { control: 'boolean' },
   },
 };
 
@@ -35,54 +35,54 @@ const SettingsIcon = () => (
 
 const sampleItems = [
   {
-    id: "dashboard",
-    label: "Dashboard",
+    id: 'dashboard',
+    label: 'Dashboard',
     icon: <DashboardIcon />,
     active: true,
   },
   {
-    id: "users",
-    label: "Users",
+    id: 'users',
+    label: 'Users',
     icon: <UsersIcon />,
     badge: 3,
     children: [
       {
-        id: "all-users",
-        label: "All Users",
+        id: 'all-users',
+        label: 'All Users',
       },
       {
-        id: "admins",
-        label: "Administrators",
+        id: 'admins',
+        label: 'Administrators',
       },
       {
-        id: "customers",
-        label: "Customers",
-        badge: "New",
+        id: 'customers',
+        label: 'Customers',
+        badge: 'New',
       },
     ],
   },
   {
-    id: "settings",
-    label: "Settings",
+    id: 'settings',
+    label: 'Settings',
     icon: <SettingsIcon />,
     children: [
       {
-        id: "general",
-        label: "General Settings",
+        id: 'general',
+        label: 'General Settings',
       },
       {
-        id: "security",
-        label: "Security",
+        id: 'security',
+        label: 'Security',
       },
       {
-        id: "notifications",
-        label: "Notifications",
+        id: 'notifications',
+        label: 'Notifications',
       },
     ],
   },
   {
-    id: "analytics",
-    label: "Analytics",
+    id: 'analytics',
+    label: 'Analytics',
     icon: <DashboardIcon />,
     disabled: true,
   },
@@ -91,7 +91,7 @@ const sampleItems = [
 export const Default: Story = {
   args: {
     items: sampleItems,
-    title: "Main Menu",
+    title: 'Main Menu',
     showDividers: true,
   },
 };
@@ -114,39 +114,39 @@ export const WithCustomItems: Story = {
   args: {
     items: [
       {
-        id: "home",
-        label: "Home",
+        id: 'home',
+        label: 'Home',
         icon: <DashboardIcon />,
         active: true,
       },
       {
-        id: "projects",
-        label: "Projects",
+        id: 'projects',
+        label: 'Projects',
         icon: <DashboardIcon />,
         badge: 5,
       },
       {
-        id: "team",
-        label: "Team",
+        id: 'team',
+        label: 'Team',
         icon: <UsersIcon />,
       },
       {
-        id: "calendar",
-        label: "Calendar",
+        id: 'calendar',
+        label: 'Calendar',
         icon: <DashboardIcon />,
-        badge: "14",
+        badge: '14',
       },
       {
-        id: "documents",
-        label: "Documents",
+        id: 'documents',
+        label: 'Documents',
         icon: <DashboardIcon />,
       },
       {
-        id: "reports",
-        label: "Reports",
+        id: 'reports',
+        label: 'Reports',
         icon: <DashboardIcon />,
       },
     ],
-    title: "Navigation",
+    title: 'Navigation',
   },
 };

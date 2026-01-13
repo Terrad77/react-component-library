@@ -1,11 +1,6 @@
-export type ButtonVariant =
-  | "primary"
-  | "secondary"
-  | "danger"
-  | "success"
-  | "warning";
-export type ButtonSize = "small" | "medium" | "large";
-export type ButtonType = "button" | "submit" | "reset";
+export type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'success' | 'warning';
+export type ButtonSize = 'small' | 'medium' | 'large';
+export type ButtonType = 'button' | 'submit' | 'reset';
 
 export interface ButtonProps {
   /** Button style variant */
@@ -33,9 +28,9 @@ export interface ButtonProps {
 }
 
 export const Button = ({
-  variant = "primary",
-  size = "medium",
-  type = "button",
+  variant = 'primary',
+  size = 'medium',
+  type = 'button',
   disabled = false,
   loading = false,
   fullWidth = false,
@@ -43,7 +38,7 @@ export const Button = ({
   iconRight,
   onClick,
   children,
-  className = "",
+  className = '',
 }: ButtonProps) => {
   const handleClick = () => {
     if (!disabled && !loading && onClick) {
@@ -54,10 +49,8 @@ export const Button = ({
   return (
     <button
       className={`button button--${variant} button--${size} ${
-        disabled ? "button--disabled" : ""
-      } ${loading ? "button--loading" : ""} ${
-        fullWidth ? "button--full-width" : ""
-      } ${className}`}
+        disabled ? 'button--disabled' : ''
+      } ${loading ? 'button--loading' : ''} ${fullWidth ? 'button--full-width' : ''} ${className}`}
       disabled={disabled || loading}
       onClick={handleClick}
       type={type}
@@ -76,13 +69,9 @@ export const Button = ({
           </svg>
         </span>
       )}
-      {!loading && iconLeft && (
-        <span className="button__icon-left">{iconLeft}</span>
-      )}
+      {!loading && iconLeft && <span className="button__icon-left">{iconLeft}</span>}
       <span className="button__content">{children}</span>
-      {!loading && iconRight && (
-        <span className="button__icon-right">{iconRight}</span>
-      )}
+      {!loading && iconRight && <span className="button__icon-right">{iconRight}</span>}
     </button>
   );
 };

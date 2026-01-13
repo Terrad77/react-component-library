@@ -1,13 +1,6 @@
-import { useState } from "react";
-import {
-  Button,
-  Input,
-  Toast,
-  ToastContainer,
-  SidebarMenu,
-  type MenuItem,
-} from "./components";
-import "./App.css";
+import { useState } from 'react';
+import { Button, Input, Toast, ToastContainer, SidebarMenu, type MenuItem } from './components';
+import './App.css';
 
 // icons for SidebarMenu
 const DashboardIcon = () => (
@@ -31,54 +24,54 @@ const SettingsIcon = () => (
 // dtata for SidebarMenu
 const menuItems: MenuItem[] = [
   {
-    id: "dashboard",
-    label: "Dashboard",
+    id: 'dashboard',
+    label: 'Dashboard',
     icon: <DashboardIcon />,
     active: true,
   },
   {
-    id: "users",
-    label: "Users",
+    id: 'users',
+    label: 'Users',
     icon: <UsersIcon />,
     badge: 3,
     children: [
       {
-        id: "all-users",
-        label: "All Users",
+        id: 'all-users',
+        label: 'All Users',
       },
       {
-        id: "admins",
-        label: "Administrators",
+        id: 'admins',
+        label: 'Administrators',
       },
       {
-        id: "customers",
-        label: "Customers",
-        badge: "New",
+        id: 'customers',
+        label: 'Customers',
+        badge: 'New',
       },
     ],
   },
   {
-    id: "settings",
-    label: "Settings",
+    id: 'settings',
+    label: 'Settings',
     icon: <SettingsIcon />,
     children: [
       {
-        id: "general",
-        label: "General Settings",
+        id: 'general',
+        label: 'General Settings',
       },
       {
-        id: "security",
-        label: "Security",
+        id: 'security',
+        label: 'Security',
       },
       {
-        id: "notifications",
-        label: "Notifications",
+        id: 'notifications',
+        label: 'Notifications',
       },
     ],
   },
   {
-    id: "analytics",
-    label: "Analytics",
+    id: 'analytics',
+    label: 'Analytics',
     icon: <DashboardIcon />,
     disabled: true,
   },
@@ -86,35 +79,32 @@ const menuItems: MenuItem[] = [
 
 function App() {
   const [count, setCount] = useState(0);
-  const [inputValue, setInputValue] = useState("");
-  const [password, setPassword] = useState("");
+  const [inputValue, setInputValue] = useState('');
+  const [password, setPassword] = useState('');
   const [toasts, setToasts] = useState<
     Array<{
       id: number;
-      type: "success" | "error" | "warning" | "info";
+      type: 'success' | 'error' | 'warning' | 'info';
       message: string;
     }>
   >([]);
   const [isMenuCollapsed, setIsMenuCollapsed] = useState(false);
 
   // Функция для добавления тостов
-  const addToast = (
-    type: "success" | "error" | "warning" | "info",
-    message: string
-  ) => {
+  const addToast = (type: 'success' | 'error' | 'warning' | 'info', message: string) => {
     const id = Date.now();
-    setToasts((prev) => [...prev, { id, type, message }]);
+    setToasts(prev => [...prev, { id, type, message }]);
 
     // Автоматическое удаление через 5 секунд
     setTimeout(() => {
-      setToasts((prev) => prev.filter((toast) => toast.id !== id));
+      setToasts(prev => prev.filter(toast => toast.id !== id));
     }, 5000);
   };
 
   // Обработчик кликов в меню с правильным типом
   const handleMenuClick = (item: MenuItem) => {
-    console.log("Menu item clicked:", item);
-    addToast("info", `${item.label} clicked`);
+    console.log('Menu item clicked:', item);
+    addToast('info', `${item.label} clicked`);
   };
 
   return (
@@ -132,21 +122,14 @@ function App() {
         <div className="hero-section">
           <h1>React Component Library</h1>
           <p className="subtitle">
-            A collection of reusable React components built with TypeScript and
-            Storybook
+            A collection of reusable React components built with TypeScript and Storybook
           </p>
 
           <div className="demo-counter">
-            <Button
-              variant="primary"
-              size="large"
-              onClick={() => setCount(count + 1)}
-            >
+            <Button variant="primary" size="large" onClick={() => setCount(count + 1)}>
               Count is {count}
             </Button>
-            <p className="counter-text">
-              Click the button to increment the counter
-            </p>
+            <p className="counter-text">Click the button to increment the counter</p>
           </div>
         </div>
 
@@ -155,9 +138,7 @@ function App() {
           {/* Button Components Section */}
           <section className="component-section">
             <h2>Button Components</h2>
-            <p className="section-description">
-              Buttons with various styles, sizes, and states
-            </p>
+            <p className="section-description">Buttons with various styles, sizes, and states</p>
 
             <div className="component-grid">
               <div className="component-demo">
@@ -195,8 +176,7 @@ function App() {
           <section className="component-section">
             <h2>Smart Input Components</h2>
             <p className="section-description">
-              Input fields with advanced features like password toggle and clear
-              button
+              Input fields with advanced features like password toggle and clear button
             </p>
 
             <div className="component-grid">
@@ -231,9 +211,7 @@ function App() {
                   label="Email Address"
                   placeholder="user@example.com"
                   error={
-                    inputValue && !inputValue.includes("@")
-                      ? "Please enter a valid email"
-                      : ""
+                    inputValue && !inputValue.includes('@') ? 'Please enter a valid email' : ''
                   }
                   onChange={setInputValue}
                   clearable
@@ -252,37 +230,24 @@ function App() {
             <div className="demo-group">
               <Button
                 variant="success"
-                onClick={() =>
-                  addToast("success", "Operation completed successfully!")
-                }
+                onClick={() => addToast('success', 'Operation completed successfully!')}
               >
                 Show Success Toast
               </Button>
-              <Button
-                variant="danger"
-                onClick={() => addToast("error", "Something went wrong!")}
-              >
+              <Button variant="danger" onClick={() => addToast('error', 'Something went wrong!')}>
                 Show Error Toast
               </Button>
               <Button
                 variant="warning"
-                onClick={() =>
-                  addToast("warning", "Warning: This action cannot be undone")
-                }
+                onClick={() => addToast('warning', 'Warning: This action cannot be undone')}
               >
                 Show Warning Toast
               </Button>
-              <Button
-                variant="primary"
-                onClick={() => addToast("info", "New message received")}
-              >
+              <Button variant="primary" onClick={() => addToast('info', 'New message received')}>
                 Show Info Toast
               </Button>
-              <Button
-                variant="secondary"
-                onClick={() => setIsMenuCollapsed(!isMenuCollapsed)}
-              >
-                {isMenuCollapsed ? "Expand Menu" : "Collapse Menu"}
+              <Button variant="secondary" onClick={() => setIsMenuCollapsed(!isMenuCollapsed)}>
+                {isMenuCollapsed ? 'Expand Menu' : 'Collapse Menu'}
               </Button>
             </div>
           </section>
@@ -310,14 +275,12 @@ import 'react-component-library/dist/style.css';`}
         {/* Footer */}
         <footer className="footer">
           <p>Built with React, TypeScript, and Storybook</p>
-          <p>
-            Check out the Storybook documentation for detailed component APIs
-          </p>
+          <p>Check out the Storybook documentation for detailed component APIs</p>
           <div className="footer-links">
             <Button
               variant="secondary"
               size="small"
-              onClick={() => window.open("http://localhost:6006", "_blank")}
+              onClick={() => window.open('http://localhost:6006', '_blank')}
             >
               Open Storybook
             </Button>
@@ -325,10 +288,7 @@ import 'react-component-library/dist/style.css';`}
               variant="secondary"
               size="small"
               onClick={() =>
-                window.open(
-                  "https://github.com/Terrad77/react-component-library",
-                  "_blank"
-                )
+                window.open('https://github.com/Terrad77/react-component-library', '_blank')
               }
             >
               View GitHub
@@ -339,16 +299,14 @@ import 'react-component-library/dist/style.css';`}
 
       {/* Toast Container */}
       <ToastContainer position="top-right">
-        {toasts.map((toast) => (
+        {toasts.map(toast => (
           <Toast
             key={toast.id}
             type={toast.type}
             message={toast.message}
             position="top-right"
             autoClose={5000}
-            onClose={() =>
-              setToasts((prev) => prev.filter((t) => t.id !== toast.id))
-            }
+            onClose={() => setToasts(prev => prev.filter(t => t.id !== toast.id))}
           />
         ))}
       </ToastContainer>
