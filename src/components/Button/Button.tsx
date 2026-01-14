@@ -1,3 +1,5 @@
+import styles from './Button.module.css';
+
 export type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'success' | 'warning';
 export type ButtonSize = 'small' | 'medium' | 'large';
 export type ButtonType = 'button' | 'submit' | 'reset';
@@ -48,9 +50,11 @@ export const Button = ({
 
   return (
     <button
-      className={`button button--${variant} button--${size} ${
-        disabled ? 'button--disabled' : ''
-      } ${loading ? 'button--loading' : ''} ${fullWidth ? 'button--full-width' : ''} ${className}`}
+      className={`${styles.button} ${styles[`button--${variant}`]} ${styles[`button--${size}`]} ${
+        disabled ? styles['button--disabled'] : ''
+      } ${loading ? styles['button--loading'] : ''} ${
+        fullWidth ? styles['button--full-width'] : ''
+      } ${className}`}
       disabled={disabled || loading}
       onClick={handleClick}
       type={type}

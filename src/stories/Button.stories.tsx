@@ -14,6 +14,10 @@ const meta: Meta<typeof Button> = {
       control: { type: 'select' },
       options: ['small', 'medium', 'large'],
     },
+    type: {
+      control: { type: 'select' },
+      options: ['button', 'submit', 'reset'],
+    },
     disabled: { control: 'boolean' },
     loading: { control: 'boolean' },
     fullWidth: { control: 'boolean' },
