@@ -21,7 +21,7 @@ const SettingsIcon = () => (
   </svg>
 );
 
-// dtata for SidebarMenu
+// data for SidebarMenu
 const menuItems: MenuItem[] = [
   {
     id: 'dashboard',
@@ -78,7 +78,6 @@ const menuItems: MenuItem[] = [
 ];
 
 function App() {
-  const [count, setCount] = useState(0);
   const [inputValue, setInputValue] = useState('');
   const [password, setPassword] = useState('');
   const [toasts, setToasts] = useState<
@@ -88,20 +87,20 @@ function App() {
       message: string;
     }>
   >([]);
-  const [isMenuCollapsed, setIsMenuCollapsed] = useState(false);
+  const [isMenuCollapsed] = useState(false);
 
-  // Функция для добавления тостов
+  // function to add a new toast
   const addToast = (type: 'success' | 'error' | 'warning' | 'info', message: string) => {
     const id = Date.now();
     setToasts(prev => [...prev, { id, type, message }]);
 
-    // Автоматическое удаление через 5 секунд
+    // auto-remove toast after 5 seconds
     setTimeout(() => {
       setToasts(prev => prev.filter(toast => toast.id !== id));
     }, 5000);
   };
 
-  // Обработчик кликов в меню с правильным типом
+  // handler menu item click
   const handleMenuClick = (item: MenuItem) => {
     console.log('Menu item clicked:', item);
     addToast('info', `${item.label} clicked`);
@@ -124,13 +123,6 @@ function App() {
           <p className="subtitle">
             A collection of reusable React components built with TypeScript and Storybook
           </p>
-
-          <div className="demo-counter">
-            <Button variant="primary" size="large" onClick={() => setCount(count + 1)}>
-              Count is {count}
-            </Button>
-            <p className="counter-text">Click the button to increment the counter</p>
-          </div>
         </div>
 
         {/* Component Showcase */}
@@ -164,9 +156,29 @@ function App() {
               <div className="component-demo">
                 <h3>States</h3>
                 <div className="demo-group">
-                  <Button loading>Loading</Button>
+                  <Button loading>Loading...</Button>
                   <Button disabled>Disabled</Button>
                   <Button fullWidth>Full Width</Button>
+                </div>
+              </div>
+
+              <div className="component-demo">
+                <h3>Button with icon</h3>
+                <div className="demo-group">
+                  <Button
+                    variant="primary"
+                    iconLeft="📎"
+                    onClick={() => console.log('Attach clicked')}
+                  >
+                    Attach File
+                  </Button>
+                  <Button
+                    variant="primary"
+                    iconRight="→"
+                    onClick={() => console.log('Continue clicked')}
+                  >
+                    Next Page
+                  </Button>
                 </div>
               </div>
             </div>
@@ -176,10 +188,11 @@ function App() {
           <section className="component-section">
             <h2>Smart Input Components</h2>
             <p className="section-description">
-              Input fields with advanced features like password toggle and clear button
+              Input fields with advanced features like password toggle, clear button, and validation
             </p>
 
             <div className="component-grid">
+              {/* Text Input */}
               <div className="component-demo">
                 <h3>Text Input</h3>
                 <Input
@@ -192,6 +205,7 @@ function App() {
                 <p className="demo-value">Value: {inputValue}</p>
               </div>
 
+              {/* Password Input */}
               <div className="component-demo">
                 <h3>Password Input</h3>
                 <Input
@@ -204,6 +218,7 @@ function App() {
                 />
               </div>
 
+              {/* Email with Validation */}
               <div className="component-demo">
                 <h3>Email with Validation</h3>
                 <Input
@@ -213,42 +228,132 @@ function App() {
                   error={
                     inputValue && !inputValue.includes('@') ? 'Please enter a valid email' : ''
                   }
+                  value={inputValue}
                   onChange={setInputValue}
                   clearable
                 />
               </div>
+
+              {/* New: Disabled Input */}
+              <div className="component-demo">
+                <h3>Disabled Input</h3>
+                <Input
+                  label="Disabled Field"
+                  placeholder="This input is disabled"
+                  value="Cannot edit this"
+                  disabled
+                />
+              </div>
+
+              {/* New: Input with Helper Text */}
+              <div className="component-demo">
+                <h3>With Helper Text</h3>
+                <Input
+                  label="Phone Number"
+                  placeholder="+1 (555) 123-4567"
+                  helperText="Enter with country code"
+                  value=""
+                  onChange={() => {}}
+                />
+              </div>
+
+              {/* New: Input with Prefix/Suffix */}
+              <div className="component-demo">
+                <h3>With Prefix & Suffix</h3>
+                <Input
+                  label="Price"
+                  placeholder="0.00"
+                  prefix="$"
+                  suffix="USD"
+                  value=""
+                  onChange={() => {}}
+                />
+              </div>
             </div>
-          </section>
 
-          {/* Toast Demo Section */}
-          <section className="component-section">
-            <h2>Toast Notifications</h2>
-            <p className="section-description">
-              Interactive notifications with auto-dismiss and progress indicator
-            </p>
+            {/* Row 2: More Input Types */}
+            <div className="component-grid" style={{ marginTop: '20px' }}>
+              {/* Input with Error */}
+              <div className="component-demo">
+                <h3>Input with Error</h3>
+                <Input
+                  label="Email with Error"
+                  placeholder="invalid-email"
+                  error="Please enter a valid email address"
+                  value="invalid-email"
+                  onChange={() => {}}
+                />
+              </div>
 
-            <div className="demo-group">
-              <Button
-                variant="success"
-                onClick={() => addToast('success', 'Operation completed successfully!')}
-              >
-                Show Success Toast
-              </Button>
-              <Button variant="danger" onClick={() => addToast('error', 'Something went wrong!')}>
-                Show Error Toast
-              </Button>
-              <Button
-                variant="warning"
-                onClick={() => addToast('warning', 'Warning: This action cannot be undone')}
-              >
-                Show Warning Toast
-              </Button>
-              <Button variant="primary" onClick={() => addToast('info', 'New message received')}>
-                Show Info Toast
-              </Button>
-              <Button variant="secondary" onClick={() => setIsMenuCollapsed(!isMenuCollapsed)}>
-                {isMenuCollapsed ? 'Expand Menu' : 'Collapse Menu'}
-              </Button>
+              {/* Required Input */}
+              <div className="component-demo">
+                <h3>Required Field</h3>
+                <Input
+                  label="Required Field"
+                  placeholder="This field is required"
+                  required
+                  value=""
+                  onChange={() => {}}
+                />
+              </div>
+
+              {/* Number Input */}
+              <div className="component-demo">
+                <h3>Number Input</h3>
+                <Input
+                  type="number"
+                  label="Quantity"
+                  placeholder="Enter quantity"
+                  value=""
+                  onChange={() => {}}
+                />
+              </div>
+
+              {/* Search Input */}
+              <div className="component-demo">
+                <h3>Search Input</h3>
+                <Input
+                  type="search"
+                  label="Search"
+                  placeholder="Search..."
+                  clearable
+                  value=""
+                  onChange={() => {}}
+                />
+              </div>
+
+              {/* Tel Input */}
+              <div className="component-demo">
+                <h3>Phone Input</h3>
+                <Input
+                  type="tel"
+                  label="Phone"
+                  placeholder="+1 234 567 8900"
+                  value=""
+                  onChange={() => {}}
+                />
+              </div>
+
+              {/* Input with fixed value and copy functionality */}
+              <div className="component-demo">
+                <h3>Read-only Value with Copy</h3>
+                <Input
+                  label="API Key"
+                  value="sk_live_1234567890abcdef"
+                  readOnly
+                  helperText="Click to copy"
+                  onClick={() => {
+                    navigator.clipboard
+                      .writeText('sk_live_1234567890abcdef')
+                      .then(() => {
+                        addToast('success', 'API Key copied to clipboard!');
+                      })
+                      .catch(() => {
+                        addToast('error', 'Failed to copy to clipboard');
+                      });
+                  }}
+                />
+              </div>
             </div>
           </section>
 

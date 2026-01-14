@@ -60,10 +60,10 @@ export const Button = ({
       type={type}
     >
       {loading && (
-        <span className="button__loader">
-          <svg className="button__spinner" viewBox="0 0 50 50">
+        <span className={styles['button__loader']}>
+          <svg className={styles['button__spinner']} viewBox="0 0 50 50">
             <circle
-              className="button__spinner-path"
+              className={styles['button__spinner-path']}
               cx="25"
               cy="25"
               r="20"
@@ -73,9 +73,9 @@ export const Button = ({
           </svg>
         </span>
       )}
-      {!loading && iconLeft && <span className="button__icon-left">{iconLeft}</span>}
-      <span className="button__content">{children}</span>
-      {!loading && iconRight && <span className="button__icon-right">{iconRight}</span>}
+      {!loading && iconLeft && <span className={styles['button__iconLeft']}>{iconLeft}</span>}
+      {children}
+      {!loading && iconRight && <span className={styles['button__iconRight']}>{iconRight}</span>}
     </button>
   );
 };

@@ -99,7 +99,7 @@
 /* Loading state */
 .button--loading {
   position: relative;
-  color: transparent !important;
+  color: white;
 }
 
 .button__loader {
@@ -143,16 +143,16 @@
 }
 
 /* Icons */
-.button__icon-left,
-.button__icon-right {
+.button__iconLeft,
+.button__iconRight {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
-.button__icon-left {
+.button__iconLeft {
   margin-right: 8px;
 }
-.button__icon-right {
+.button__iconRight {
   margin-left: 8px;
 }

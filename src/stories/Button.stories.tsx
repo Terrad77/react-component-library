@@ -30,42 +30,42 @@ type Story = StoryObj<typeof Button>;
 export const Primary: Story = {
   args: {
     variant: 'primary',
-    children: 'Primary Button',
+    children: 'Primary',
   },
 };
 
 export const Secondary: Story = {
   args: {
     variant: 'secondary',
-    children: 'Secondary Button',
+    children: 'Secondary',
   },
 };
 
 export const Danger: Story = {
   args: {
     variant: 'danger',
-    children: 'Danger Button',
+    children: 'Danger',
   },
 };
 
 export const Small: Story = {
   args: {
     size: 'small',
-    children: 'Small Button',
+    children: 'Small',
   },
 };
 
 export const Large: Story = {
   args: {
     size: 'large',
-    children: 'Large Button',
+    children: 'Large',
   },
 };
 
 export const Disabled: Story = {
   args: {
     disabled: true,
-    children: 'Disabled Button',
+    children: 'Disabled',
   },
 };
 
@@ -92,4 +92,42 @@ export const AllVariants: Story = {
       </Button>
     </div>
   ),
+};
+
+export const WithLeftIcon: Story = {
+  args: {
+    variant: 'primary',
+    children: 'Attach File',
+    iconLeft: '📎',
+  },
+};
+export const WithRightIcon: Story = {
+  args: {
+    variant: 'primary',
+    children: 'Next Page',
+    iconRight: '→',
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    variant: 'primary',
+    children: 'Loading...',
+    loading: true,
+  },
+};
+
+export const FullWidth: Story = {
+  args: {
+    variant: 'primary',
+    children: 'Full Width',
+    fullWidth: true,
+  },
+  decorators: [
+    Story => (
+      <div style={{ width: '300px' }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
